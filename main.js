@@ -1,8 +1,13 @@
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
-const electronReload = require("electron-reload");
 
-electronReload(__dirname);
+try {
+    const electronReload = require("electron-reload");
+    electronReload(__dirname);
+} catch (_)
+{
+    // Swallow exceptions because this is a dev dependency only
+}
 
 const loadMainWindow = () => {
     const mainWindow = new BrowserWindow({
